@@ -6,15 +6,11 @@ Shared mustache templates for rails 3.
 
 Add this line to your application's Gemfile:
 
-    gem 'smt_rails'
+    gem 'smt_rails', :git => 'git://github.com/railsware/smt_rails.git'
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install smt_rails
 
 ## Usage
 
