@@ -34,7 +34,7 @@ In view you can render this template by this way:
     
 The same template you can render in JavaScript:
 
-    var content = SMT['templates/_test']({msg: "Test"});
+    var content = SMT['templates/test']({msg: "Test"});
 
 ## Configuration
 
