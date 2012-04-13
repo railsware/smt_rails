@@ -13,12 +13,19 @@ module SmtRails
     attr_reader :namespace
 
     def evaluate(scope, locals, &block)
+      template_key = path_to_key scope
       <<-MustacheTemplate
-  (function() {
+  (function() { 
   #{namespace} || (#{namespace} = {});
-  #{namespace}[#{scope.logical_path.inspect}] = function(object) { return Mustache.render(#{data.inspect}, object) };
+  #{namespace}['#{template_key}'] = function(object) { return Mustache.render(#{data.inspect}, object) };
   }).call(this);
       MustacheTemplate
+    end
+    
+    def path_to_key(scope)
+      path = scope.logical_path.to_s.split('/')
+      path.last.gsub!(/^_/, '')
+      path.join('/')
     end
   end
 end
