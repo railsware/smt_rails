@@ -24,7 +24,7 @@ module SmtRails
           out = ""
           out << "//= require mustache"
           out << "\n"
-          out << "//= require_tree ../../views/#{template_dir}"
+          out << "//= require_tree ../../#{template_dir}"
           out << "\n"
           out << "\n"
         end
@@ -32,7 +32,7 @@ module SmtRails
       
       def create_dir
         template_dir = options[:template_dir]
-        empty_directory "#{views_path}/#{template_dir}"
+        empty_directory "#{app_path}/#{template_dir}"
       end
 
     end

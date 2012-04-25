@@ -20,21 +20,21 @@ Or install it yourself as:
 
     $ rails g smt_rails:install
     
-Generator add into "application.js" requirements for mustache and "templates" folder in "app/views". Next you can create mustache templates in this folder or subfolders.
+Generator add into "application.js" requirements for mustache and "templates" folder in "app". Next you can create mustache templates in this folder or subfolders.
 
 For example:
 
-File: "app/views/templates/_test.mustache"
+File: "app/templates/tests/_test.mustache"
 
     Hello {{msg}}!!!
     
 In view you can render this template by this way:
 
-    <%= render "templates/test", :mustache => {msg: "Test"} %> 
+    <%= render "tests/test", :mustache => {msg: "Test"} %> 
     
 The same template you can render in JavaScript:
 
-    var content = SMT['templates/test']({msg: "Test"});
+    var content = SMT['tests/test']({msg: "Test"});
 
 ## Configuration
 

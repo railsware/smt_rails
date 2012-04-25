@@ -10,8 +10,8 @@ module SmtRails
         "#{asset_path}/javascripts"
       end
 
-      def views_path
-        "app/views"
+      def app_path
+        "app"
       end
 
     end
