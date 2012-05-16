@@ -15,6 +15,10 @@ module SmtRails
     def configure
       yield self
     end
+    
+    def template_base_path
+      @template_base_path ||= Rails.root.join("app", "templates")
+    end
 
     def template_extension
       @template_extension ||= 'mustache'
