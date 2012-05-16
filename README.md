@@ -45,6 +45,12 @@ The same template you can render in JavaScript:
       config.template_base_path = Rails.root.join("app", "templates") # templates dir
     end
 
+## Demo
+
+Site: (http://smt-rails-example.herokuapp.com/)[http://smt-rails-example.herokuapp.com/]
+
+Source code: (https://github.com/le0pard/smt_rails_example)[https://github.com/le0pard/smt_rails_example]
+
 ## Contributing
 
 1. Fork it
