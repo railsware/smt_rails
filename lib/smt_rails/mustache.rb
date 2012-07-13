@@ -1,8 +1,14 @@
 require "mustache"
 require "active_support"
 
-module SmtRails
+# Monkey patch mustache to render {{>partial}}
+class Mustache
+  def self.partial(name)
+    File.read("#{template_path}/#{File.dirname(name.to_s)}/_#{File.basename(name.to_s)}.#{template_extension}")
+  end
+end
 
+module SmtRails
   module Mustache
     def self.call(template)
       if template.locals.include?(SmtRails.action_view_key.to_s) || template.locals.include?(SmtRails.action_view_key.to_sym)

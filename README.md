@@ -36,6 +36,24 @@ The same template you can render in JavaScript:
 
     var content = SMT['tests/test']({msg: "Test"});
 
+## Mustache Partials
+
+File: "app/templates/people/_list.mustache"
+
+    {{#people}}{{>people/item}}{{/people}}
+
+File: "app/templates/people/_item.mustache"
+
+    Name: {{name}}<br>
+
+In view you can render this template by this way:
+
+    <%= render "people/list", :mustache => {people: [{name: 'Alex'}, {name: 'John'}]} %>
+
+The same template you can render in JavaScript:
+
+    var content = SMT['people/list']({people: [{name: 'Alex'}, {name: 'John'}]});
+
 ## Configuration
 
     SmtRails.configure do |config|
