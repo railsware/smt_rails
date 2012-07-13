@@ -22,7 +22,7 @@ module SmtRails
     if (object == null){
       return template;
     } else {
-      var partials = {}
+      var partials = {};
       for (var key in #{SmtRails.template_namespace}) {
         partials[key] = #{SmtRails.template_namespace}[key]();
       }
