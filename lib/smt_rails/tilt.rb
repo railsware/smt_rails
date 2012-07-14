@@ -17,18 +17,18 @@ module SmtRails
       <<-MustacheTemplate
   (function() { 
   #{namespace} || (#{namespace} = {});
+  #{namespace}Partials || (#{namespace}Partials = {});
+  
   #{namespace}[#{template_key.inspect}] = function(object) {
     var template = #{data.inspect};
     if (object == null){
       return template;
     } else {
-      var partials = {};
-      for (var key in #{SmtRails.template_namespace}) {
-        partials[key] = #{SmtRails.template_namespace}[key]();
-      }
-      return Mustache.render(template, object, partials);
+      return Mustache.render(template, object, #{SmtRails.template_namespace}Partials);
     }
   };
+  
+  #{namespace}Partials[#{template_key.inspect}] = #{namespace}[#{template_key.inspect}]();
   }).call(this);
       MustacheTemplate
     end
