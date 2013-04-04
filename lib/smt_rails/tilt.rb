@@ -1,38 +1,6 @@
 require 'tilt'
-require 'execjs'
-require 'pathname'
 
 module SmtRails
-  class MustacheCompile
-    class << self
-      def compile(source, options = {})
-        context.eval("Mustache.compile(#{source.inspect})")
-      end
-
-      def compilePartial(name, source, options = {})
-        context.eval("Mustache.compilePartial(#{name.inspect}, #{source.inspect})")
-      end
-
-      private
-
-      def context
-        @context ||= ExecJS.compile(source)
-      end
-
-      def source
-        @source ||= path.read
-      end
-
-      def path
-        @path ||= assets_path.join('javascripts', 'mustache.js')
-      end
-
-      def assets_path
-        @assets_path ||= Pathname(__FILE__).dirname.join('..', '..', 'vendor', 'assets')
-      end
-    end
-  end
-
   class Tilt < Tilt::Template
     def self.default_mime_type
       'application/javascript'
