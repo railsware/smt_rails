@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "tilt",            ">= 1.3.3"
   gem.add_runtime_dependency "sprockets",       ">= 2.0.3"
   gem.add_runtime_dependency "mustache",        ">= 0.99.4"
+  gem.add_runtime_dependency "execjs",          ">= 0.3.0"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

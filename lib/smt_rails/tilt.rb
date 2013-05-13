@@ -12,14 +12,23 @@ module SmtRails
 
     attr_reader :namespace
 
+    def precompile(template_key, template)
+      @context ||= begin
+        mustache_path = File.expand_path("../../../vendor/assets/javascripts/mustache.js", __FILE__)
+        ExecJS.compile File.read(mustache_path)
+      end
+      [@context.call("Mustache.compile", template), @context.call("Mustache.compilePartial", template_key, template)]
+    end
+
     def evaluate(scope, locals, &block)
       template_key = path_to_key scope
+      template_function, partial_function = precompile(template_key, data)
       <<-MustacheTemplate
   (function() {
   #{namespace} || (#{namespace} = {});
   #{namespace}Cache || (#{namespace}Cache = {});
-  #{namespace}Cache[#{template_key.inspect}] = Mustache.compile(#{data.inspect});
-  Mustache.compilePartial(#{template_key.inspect}, #{data.inspect});
+  #{namespace}Cache[#{template_key.inspect}] = #{template_function};
+  #{partial_function};
 
   #{namespace}[#{template_key.inspect}] = function(object) {
     if (!object){ object = {}; }
