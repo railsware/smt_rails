@@ -2,9 +2,7 @@ require 'tilt'
 
 module SmtRails
   class Tilt < Tilt::Template
-    def self.default_mime_type
-      'application/javascript'
-    end
+    self.default_mime_type = 'application/javascript'
 
     def prepare
       @namespace = "this.#{SmtRails.template_namespace}"
