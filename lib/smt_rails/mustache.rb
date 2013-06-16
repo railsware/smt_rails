@@ -11,9 +11,13 @@ end
 module SmtRails
   module Mustache
     def self.call(template)
+      erb = ActionView::Template.registered_template_handler(:erb).call(template)
+
       if template.locals.include?(SmtRails.action_view_key.to_s) || template.locals.include?(SmtRails.action_view_key.to_sym)
         ::Mustache.template_path = SmtRails.template_base_path
-        "Mustache.render(#{template.source.inspect}, #{SmtRails.action_view_key.to_s}).html_safe"
+        <<-SOURCE
+          Mustache.render((begin;#{erb};end), #{SmtRails.action_view_key.to_s}).html_safe
+        SOURCE
       else
         "#{template.source.inspect}.html_safe"
       end
