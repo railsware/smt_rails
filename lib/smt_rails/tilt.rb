@@ -16,7 +16,7 @@ module SmtRails
   (function() {
   #{namespace} || (#{namespace} = {});
   #{namespace}Cache || (#{namespace}Cache = {});
-  #{namespace}Cache[#{template_key.inspect}] = Mustache.compile(#{data.inspect});
+  #{namespace}Cache[#{template_key.inspect}] = Mustache.parse(#{data.inspect});
   Mustache.compilePartial(#{template_key.inspect}, #{data.inspect});
 
   #{namespace}[#{template_key.inspect}] = function(object) {
