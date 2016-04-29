@@ -3,10 +3,11 @@ module SmtRails
     config.before_configuration do |app|
       app.paths['app/views'] << SmtRails.template_base_path
     end
-    
-    initializer "sprockets.smt_rails", :after => "sprockets.environment", :group => :all do |app|
-      next unless app.assets
-      app.assets.register_engine(".#{SmtRails.template_extension}", Tilt)
+
+    initializer "sprockets.smt_rails", :group => :all do |app|
+      config.assets.configure do |env|
+        env.register_engine(".#{SmtRails.template_extension}", Tilt)
+      end
       app.config.assets.paths << SmtRails.template_base_path
     end
   end
