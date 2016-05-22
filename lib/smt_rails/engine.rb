@@ -5,7 +5,7 @@ module SmtRails
     end
 
     initializer "sprockets.smt_rails", :group => :all do |app|
-      config.assets.configure do |env|
+      app.config.assets.configure do |env|
         env.register_engine(".#{SmtRails.template_extension}", Tilt)
       end
       app.config.assets.paths << SmtRails.template_base_path
