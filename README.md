@@ -1,6 +1,6 @@
 # SmtRails
 
-Shared mustache templates for rails 3.
+Shared mustache templates for Rails 3 and 4 and Sprockets 2 and 3.
 
 ## Installation
 
@@ -11,15 +11,15 @@ Add this line to your application's Gemfile:
 And then execute:
 
     $ bundle
-    
+
 Or install it yourself as:
-	
+
     $ gem install smt_rails
 
 ## Usage
 
     $ rails g smt_rails:install
-    
+
 Generator add into "application.js" requirements for mustache and "templates" folder in "app". Next you can create mustache templates in this folder or subfolders.
 
 For example:
@@ -27,11 +27,11 @@ For example:
 File: "app/templates/tests/_test.mustache"
 
     Hello {{msg}}!!!
-    
+
 In view you can render this template by this way:
 
-    <%= render "tests/test", :mustache => {msg: "Test"} %> 
-    
+    <%= render "tests/test", :mustache => {msg: "Test"} %>
+
 The same template you can render in JavaScript:
 
     var content = SMT['tests/test']({msg: "Test"});
