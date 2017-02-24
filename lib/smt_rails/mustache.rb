@@ -13,7 +13,7 @@ module SmtRails
     def self.call(template)
       if template.locals.include?(SmtRails.action_view_key.to_s) || template.locals.include?(SmtRails.action_view_key.to_sym)
         ::Mustache.template_path = SmtRails.template_base_path
-        "Mustache.render(#{template.source.inspect}, #{SmtRails.action_view_key.to_s}).html_safe"
+        "Mustache.render(#{ERB.new(template.source).result.inspect}, #{SmtRails.action_view_key.to_s}).html_safe"
       else
         "#{template.source.inspect}.html_safe"
       end

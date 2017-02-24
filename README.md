@@ -54,6 +54,10 @@ The same template you can render in JavaScript:
 
     var content = SMT['people/list']({people: [{name: 'Alex'}, {name: 'John'}]});
 
+Templates now also support ERB:
+
+    <%= I18n.t('hello') %> {{msg}}!!!
+
 ## Configuration
 
     SmtRails.configure do |config|
